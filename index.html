@@ -9,11 +9,42 @@
 
     <h2>Signup</h2>
 
-    <form id="signupForm" action="http://gravestoneapi.pythonanywhere.com/api/endpoint" method="post">
+    <form id="signupForm">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="user" required>
+        <input type="text" id="username" name="username" required>
         <button type="submit">Signup</button>
     </form>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+            var jsonData = {};
+
+            formData.forEach(function(value, key){
+                jsonData[key] = value;
+            });
+
+            fetch('http://gravestoneapi.pythonanywhere.com/api/endpoint', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("User signed up successfully.");
+                } else {
+                    console.error("Failed to sign up user.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    </script>
 
 </body>
 </html>
