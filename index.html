@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <h2>Signup</h2>
+    <h2>up</h2>
 
     <form id="signupForm">
         <label for="username">Username:</label>
@@ -35,13 +35,13 @@
             })
             .then(response => {
                 if (response.ok) {
-                    console.log("User signed up successfully.");
+                    alert("User signed up successfully.");
                 } else {
-                    console.error("Failed to sign up user.");
+                    alert("Failed to sign up user.");
                 }
             })
             .catch(error => {
-                console.error("Error:", error);
+                alert("Error:", error);
             });
         });
     </script>
